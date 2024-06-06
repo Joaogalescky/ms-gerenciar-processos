@@ -14,5 +14,8 @@ public class PropostaService {
     @Autowired
     private final PropostaRepository propostaRepository;
 
+    public Proposta cadastrarProposta (Proposta proposta) {
+        return propostaRepository.save(proposta);
+    }
 
 }
