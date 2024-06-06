@@ -27,15 +27,22 @@ public class Proposta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
+
     @Column(name = "descricao", nullable = false, length = 500)
     private String descricao;
+
     @Column(name = "dataProposta")
     private Date dataProposta;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private Status Status;
+    private Status status;
+
+    @Column(name = "tempoVoto", nullable = false)
+    private long tempoVoto;
 
     @Override
     public boolean equals(Object o) {
@@ -56,8 +63,8 @@ public class Proposta implements Serializable {
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", dataProposta=" + dataProposta +
-                ", Status=" + Status +
+                ", status=" + status +
+                ", tempoVoto=" + tempoVoto +
                 '}';
     }
-
 }
