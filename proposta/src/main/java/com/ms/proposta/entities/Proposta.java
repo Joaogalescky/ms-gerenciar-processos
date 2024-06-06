@@ -1,14 +1,7 @@
 package com.ms.proposta.entities;
 
 import com.ms.proposta.Enum.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +27,7 @@ public class Proposta implements Serializable {
     @Column(name = "descricao", nullable = false, length = 500)
     private String descricao;
 
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dataProposta")
     private Date dataProposta;
 

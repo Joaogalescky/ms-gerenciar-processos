@@ -18,14 +18,14 @@ public class PropostaService {
     @Autowired
     private final PropostaRepository propostaRepository;
 
-    public Proposta cadastrarProposta(PropostaCadastroDto propostaDTO) {
+    public Proposta cadastrarProposta(PropostaCadastroDto propostaDto) {
         Proposta proposta = new Proposta();
-        proposta.setNome(propostaDTO.getNome());
-        proposta.setDescricao(propostaDTO.getDescricao());
-        proposta.setStatus(propostaDTO.getStatus());
+        proposta.setNome(propostaDto.getNome());
+        proposta.setDescricao(propostaDto.getDescricao());
+        proposta.setStatus(propostaDto.getStatus());
 
-        if (propostaDTO.getTempoVoto() != null) {
-            proposta.setTempoVoto(propostaDTO.getTempoVoto() * 60000L);
+        if (propostaDto.getTempoVoto() != null) {
+            proposta.setTempoVoto(propostaDto.getTempoVoto() * 60000L);
         } else {
             proposta.setTempoVoto(60000L);
         }
@@ -44,15 +44,15 @@ public class PropostaService {
         );
     }
 
-    public Proposta alterarProposta(Long idProposta, PropostaAtualizacaoDto propostaDTO) {
+    public Proposta alterarProposta(Long idProposta, PropostaAtualizacaoDto propostaDto) {
         Proposta propostaExistente = buscarPorId(idProposta);
 
-        propostaExistente.setNome(propostaDTO.getNome());
-        propostaExistente.setDescricao(propostaDTO.getDescricao());
-        propostaExistente.setStatus(propostaDTO.getStatus());
+        propostaExistente.setNome(propostaDto.getNome());
+        propostaExistente.setDescricao(propostaDto.getDescricao());
+        propostaExistente.setStatus(propostaDto.getStatus());
 
-        if (propostaDTO.getTempoVoto() != null) {
-            propostaExistente.setTempoVoto(propostaDTO.getTempoVoto() * 60000L);
+        if (propostaDto.getTempoVoto() != null) {
+            propostaExistente.setTempoVoto(propostaDto.getTempoVoto() * 60000L);
         }
         return propostaRepository.save(propostaExistente);
     }
