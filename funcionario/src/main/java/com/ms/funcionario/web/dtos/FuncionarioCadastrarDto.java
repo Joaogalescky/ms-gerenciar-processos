@@ -2,21 +2,18 @@ package com.ms.funcionario.web.dtos;
 
 import lombok.*;
 
-import java.util.Date;
 
-@Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString
-public class FuncionarioRequestDto {
+@Data
+public class FuncionarioCadastrarDto {
     @NonNull
     private Long id;
     @NonNull
     private String nome;
     @NonNull
-    private Date dataNasc;
+    private String dataNasc;
     @NonNull
     private String cpf;
     @NonNull
-    private Enum sexo;
+    private String sexo;
 }
