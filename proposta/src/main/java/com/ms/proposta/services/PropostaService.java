@@ -18,4 +18,8 @@ public class PropostaService {
         return propostaRepository.save(proposta);
     }
 
+    public List <Proposta> listarPropostas() {
+        return propostaRepository.findAll();
+    }
+
 }
