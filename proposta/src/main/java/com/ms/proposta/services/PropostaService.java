@@ -56,4 +56,8 @@ public class PropostaService {
         }
         return propostaRepository.save(propostaExistente);
     }
+    public void deletarProposta(Long id) {
+        Proposta proposta = buscarPorId(id);
+        propostaRepository.delete(proposta);
+    }
 }
