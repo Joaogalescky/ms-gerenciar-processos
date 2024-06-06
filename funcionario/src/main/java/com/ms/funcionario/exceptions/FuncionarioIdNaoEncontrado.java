@@ -1,4 +1,4 @@
-package com.ms.funcionario.web.exceptions;
+package com.ms.funcionario.exceptions;
 
 public class FuncionarioIdNaoEncontrado extends RuntimeException {
     public FuncionarioIdNaoEncontrado(String message) {
