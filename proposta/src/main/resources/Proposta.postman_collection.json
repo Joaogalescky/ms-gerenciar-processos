@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "5b57ac95-01c9-4935-86ce-32570216a3bd",
+		"name": "Proposta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34342243"
+	},
+	"item": [
+		{
+			"name": "cadastrarProposta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Instalação do cantinho da sinuca\",\r\n    \"descricao\": \"O serviço está muito estressante, nada melhor do que dar uma descontraída criando um cantinho da sinuca, equipado com mesa, frigobar, ar condicionado e uma caixa de som.\",\r\n    \"tempoVoto\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/propostas"
+			},
+			"response": []
+		},
+		{
+			"name": "ObterPropostaPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/v1/propostas/1"
+			},
+			"response": []
+		},
+		{
+			"name": "deletarPropostaPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/v1/propostas/1"
+			},
+			"response": []
+		},
+		{
+			"name": "alterarProposta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Luzes de Led nos escritórios\",\r\n    \"descricao\": \"As luzes atuais cansam muito a vista, se realizarem a troca por luzes de Led seria melhor\",\r\n    \"status\": \"ATIVO\",\r\n    \"tempoVoto\": 8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8081/api/v1/propostas/1"
+			},
+			"response": []
+		},
+		{
+			"name": "ObterPropostas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8081/api/v1/propostas"
+			},
+			"response": []
+		}
+	]
+}
