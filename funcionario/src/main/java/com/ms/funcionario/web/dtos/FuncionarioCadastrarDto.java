@@ -2,6 +2,7 @@ package com.ms.funcionario.web.dtos;
 
 import lombok.*;
 
+import java.util.Date;
 
 @NoArgsConstructor
 @Data
@@ -11,7 +12,7 @@ public class FuncionarioCadastrarDto {
     @NonNull
     private String nome;
     @NonNull
-    private String dataNasc;
+    private Date dataNasc;
     @NonNull
     private String cpf;
     @NonNull
