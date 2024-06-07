@@ -7,12 +7,11 @@ import com.ms.funcionario.web.dtos.FuncionarioListarDto;
 import com.ms.funcionario.web.dtos.mappers.FuncionarioMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/funcionario")
+@RequestMapping("api/v1/funcionarios")
 public class FuncionarioController {
 
     @Autowired
@@ -43,9 +42,9 @@ public class FuncionarioController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id){
-    funcionarioService.deletarFuncionario(id);
-    return ResponseEntity.noContent().build();
-  }
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
+        funcionarioService.deletarFuncionario(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
