@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/v1/funcionario")
+@RequestMapping("api/v1/funcionarios")
 public class FuncionarioController {
 
     @Autowired

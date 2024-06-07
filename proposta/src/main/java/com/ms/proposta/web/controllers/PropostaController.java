@@ -1,7 +1,9 @@
 package com.ms.proposta.web.controllers;
 
 import com.ms.proposta.entities.Proposta;
+import com.ms.proposta.repositories.FuncionarioClient;
 import com.ms.proposta.services.PropostaService;
+import com.ms.proposta.web.dtos.FuncionarioDto;
 import com.ms.proposta.web.dtos.PropostaAtualizacaoDto;
 import com.ms.proposta.web.dtos.PropostaCadastroDto;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,8 @@ public class PropostaController {
 
     @Autowired
     private final PropostaService propostaService;
+
+    private final FuncionarioClient funcionarioClient;
 
     @PostMapping
     public ResponseEntity<Proposta> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
@@ -47,5 +51,11 @@ public class PropostaController {
     public ResponseEntity<Void> deletarProposta(@PathVariable Long id) {
         propostaService.deletarProposta(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/funcionarios/{id}")
+    public ResponseEntity<FuncionarioDto> buscarFuncionario(@PathVariable Long id) {
+        FuncionarioDto funcionario = funcionarioClient.buscarPorId(id);
+        return ResponseEntity.ok(funcionario);
     }
 }
