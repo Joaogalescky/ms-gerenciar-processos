@@ -10,5 +10,5 @@ public class PropostaAtualizacaoDto {
     private String nome;
     private String descricao;
     private Status status;
-    private Long tempoVoto;
+    private String tempoVoto;
 }

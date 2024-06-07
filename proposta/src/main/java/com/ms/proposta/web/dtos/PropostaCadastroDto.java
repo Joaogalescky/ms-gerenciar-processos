@@ -9,6 +9,5 @@ import lombok.Setter;
 public class PropostaCadastroDto {
     private String nome;
     private String descricao;
-    private Status status;
-    private Long tempoVoto;
+    private String tempoVoto;
 }

@@ -1,5 +1,6 @@
 package com.ms.proposta.services;
 
+import com.ms.proposta.Enum.Status;
 import com.ms.proposta.entities.Proposta;
 import com.ms.proposta.exceptions.IdPropostaNaoEncontradoException;
 import com.ms.proposta.repositories.PropostaRepository;
@@ -18,30 +19,43 @@ public class PropostaService {
     @Autowired
     private final PropostaRepository propostaRepository;
 
+    @Autowired
+    private final AgendadorProposta propostaScheduler;
+
     public Proposta cadastrarProposta(PropostaCadastroDto propostaDto) {
         Proposta proposta = new Proposta();
         proposta.setNome(propostaDto.getNome());
         proposta.setDescricao(propostaDto.getDescricao());
-        proposta.setStatus(propostaDto.getStatus());
+        proposta.setStatus(Status.ATIVO);
 
         if (propostaDto.getTempoVoto() != null) {
-            proposta.setTempoVoto(propostaDto.getTempoVoto() * 60000L);
+            proposta.setTempoVoto(Proposta.converterTempo(propostaDto.getTempoVoto()));
         } else {
             proposta.setTempoVoto(60000L);
         }
 
         proposta.setDataProposta(new Date());
-        return propostaRepository.save(proposta);
+        Proposta savedProposta = propostaRepository.save(proposta);
+
+        propostaScheduler.scheduleStatusChange(savedProposta);
+
+        return savedProposta;
     }
 
     public List<Proposta> listarPropostas() {
-        return propostaRepository.findAll();
+        List<Proposta> propostas = propostaRepository.findAll();
+        for (Proposta proposta : propostas) {
+            proposta.setTempoRestante(proposta.getTempoRestante());
+        }
+        return propostas;
     }
 
     public Proposta buscarPorId(Long id) {
-        return propostaRepository.findById(id).orElseThrow(
+        Proposta proposta = propostaRepository.findById(id).orElseThrow(
                 () -> new IdPropostaNaoEncontradoException(String.format("Proposta id=%s não encontrada", id))
         );
+        proposta.setTempoRestante(proposta.getTempoRestante());
+        return proposta;
     }
 
     public Proposta alterarProposta(Long idProposta, PropostaAtualizacaoDto propostaDto) {
@@ -52,10 +66,11 @@ public class PropostaService {
         propostaExistente.setStatus(propostaDto.getStatus());
 
         if (propostaDto.getTempoVoto() != null) {
-            propostaExistente.setTempoVoto(propostaDto.getTempoVoto() * 60000L);
+            propostaExistente.setTempoVoto(Proposta.converterTempo(propostaDto.getTempoVoto()));
         }
         return propostaRepository.save(propostaExistente);
     }
+
     public void deletarProposta(Long id) {
         Proposta proposta = buscarPorId(id);
         propostaRepository.delete(proposta);
