@@ -9,6 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class FuncionarioDto {
+    private Long id;
     private String nome;
     private String dataNasc;
     private String cpf;
