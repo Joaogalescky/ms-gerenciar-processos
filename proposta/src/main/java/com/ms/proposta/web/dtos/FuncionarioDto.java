@@ -1,6 +1,5 @@
 package com.ms.proposta.web.dtos;
 
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -22,10 +22,8 @@ public class PropostaService {
 
     @Autowired
     private final PropostaRepository propostaRepository;
-
     @Autowired
     private final FuncionarioClient funcionarioClient;
-
     public Proposta cadastrarProposta(PropostaCadastroDto propostaDto) {
 
         FuncionarioDto funcionario = funcionarioClient.buscarPorId(propostaDto.getIdFuncionario());
