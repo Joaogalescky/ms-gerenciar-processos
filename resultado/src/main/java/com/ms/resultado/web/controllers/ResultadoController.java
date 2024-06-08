@@ -1,4 +1,4 @@
-package com.ms.resultado.controllers;
+package com.ms.resultado.web.controllers;
 
 import com.ms.resultado.services.ResultadoService;
 import com.ms.resultado.web.dtos.ResultadoDto;
