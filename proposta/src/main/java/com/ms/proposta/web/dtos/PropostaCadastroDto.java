@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PropostaCadastroDto {
+    private Long idFuncionario;
     private String nome;
     private String descricao;
-    private String tempoVoto;
 }

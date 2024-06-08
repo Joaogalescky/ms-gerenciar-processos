@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter
@@ -22,6 +21,9 @@ public class Proposta implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "idFuncionario")
+    private Long idFuncionario;
+
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
@@ -30,37 +32,6 @@ public class Proposta implements Serializable {
 
     @Column(name = "dataProposta")
     private Date dataProposta;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
-
-    @Column(name = "tempoVoto")
-    private Long tempoVoto;
-
-    @Transient
-    private String tempoRestante;
-
-    public String getTempoRestante() {
-        if (status == Status.INATIVO) {
-            return "00:00:00";
-        }
-        long atual = new Date().getTime();
-        long fim = dataProposta.getTime() + tempoVoto;
-        long tempoRestante = Math.max(0, fim - atual);
-
-        long horas = TimeUnit.MILLISECONDS.toHours(tempoRestante);
-        long minutos = TimeUnit.MILLISECONDS.toMinutes(tempoRestante) % 60;
-        long segundos = TimeUnit.MILLISECONDS.toSeconds(tempoRestante) % 60;
-        return String.format("%02d:%02d:%02d", horas, minutos, segundos);
-    }
-
-    public static Long converterTempo(String tempoVoto) {
-        String[] parts = tempoVoto.split(":");
-        long hours = Long.parseLong(parts[0]);
-        long minutes = Long.parseLong(parts[1]);
-        return TimeUnit.HOURS.toMillis(hours) + TimeUnit.MINUTES.toMillis(minutes);
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -81,9 +52,6 @@ public class Proposta implements Serializable {
                 ", nome='" + nome + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", dataProposta=" + dataProposta +
-                ", status=" + status +
-                ", tempoVoto=" + tempoVoto +
-                ", tempoRestante=" + getTempoRestante() +
                 '}';
     }
 }
