@@ -1,7 +1,7 @@
 package com.ms.resultado.entities;
 
 
-import com.ms.resultado.enums.Apuracao;
+import com.ms.resultado.enums.Escolha;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +18,13 @@ public class Voto implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "idProposta")
-    private Long idProposta;
+    @Column(name = "idSessao")
+    private Long idSessao;
 
     @Column(name = "idFunc")
     private Long idFunc;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "apuracao")
-    private Apuracao apuracao;
+    @Column(name = "escolha")
+    private Escolha escolha;
 }

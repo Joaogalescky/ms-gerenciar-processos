@@ -1,6 +1,7 @@
 package com.ms.funcionario.web.controllers;
 
 import com.ms.funcionario.entities.Funcionario;
+import com.ms.funcionario.exceptions.FuncionarioNaoEncontradoException;
 import com.ms.funcionario.services.FuncionarioService;
 import com.ms.funcionario.web.dtos.FuncionarioCadastrarDto;
 import com.ms.funcionario.web.dtos.FuncionarioListarDto;
@@ -32,6 +33,9 @@ public class FuncionarioController {
     @GetMapping("/{id}")
     public ResponseEntity<FuncionarioListarDto> getById(@PathVariable Long id) {
         Funcionario funcionario = funcionarioService.buscarPorId(id);
+        if (funcionario == null) {
+            throw new FuncionarioNaoEncontradoException(id);
+        }
         return ResponseEntity.ok(FuncionarioMapper.toListDto(funcionario));
     }
 

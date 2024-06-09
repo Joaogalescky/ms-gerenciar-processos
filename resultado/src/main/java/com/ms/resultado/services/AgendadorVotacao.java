@@ -1,31 +1,30 @@
-package com.ms.proposta.services;
+package com.ms.resultado.services;
 
-import com.ms.proposta.Enum.Status;
-import com.ms.proposta.entities.Proposta;
-import com.ms.proposta.repositories.PropostaRepository;
+import com.ms.resultado.entities.SessaoVotacao;
+import com.ms.resultado.enums.StatusSessao;
+import com.ms.resultado.repositories.SessaoVotacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
-public class AgendadorProposta {
+public class AgendadorVotacao {
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @Autowired
-    private final PropostaRepository propostaRepository;
+    private final SessaoVotacaoRepository sessaoVotacaoRepository;
 
-    public void scheduleStatusChange(Proposta proposta) {
+    public void scheduleStatusChange(SessaoVotacao sessaoVotacao) {
         Runnable tarefa = () -> {
-            proposta.setStatus(Status.INATIVO);
-            propostaRepository.save(proposta);
+            sessaoVotacao.setStatus(StatusSessao.INATIVO);
+            sessaoVotacaoRepository.save(sessaoVotacao);
         };
 
-        long tempo = proposta.getTempoVoto();
+        long tempo = sessaoVotacao.getTempoVotacao();
         scheduler.schedule(tarefa, tempo, TimeUnit.MILLISECONDS);
     }
 }

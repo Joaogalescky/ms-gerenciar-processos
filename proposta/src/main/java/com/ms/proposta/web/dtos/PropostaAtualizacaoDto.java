@@ -9,6 +9,5 @@ import lombok.Setter;
 public class PropostaAtualizacaoDto {
     private String nome;
     private String descricao;
-    private Status status;
     private String tempoVoto;
 }

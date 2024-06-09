@@ -1,5 +1,5 @@
 package com.ms.resultado.enums;
 
-public enum Apuracao {
+public enum Escolha {
     APROVADO, REPROVADO;
 }
