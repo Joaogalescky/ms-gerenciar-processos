@@ -50,3 +50,10 @@ info:
   application:
     nome: API de MS-Funcionario
     descricao: API para gerenciamento de funcionario
+springdoc:
+  swagger-ui:
+    path: /docs-park.html
+  api-docs:
+    path: /docs-park.html
+  packages-to-scan:
+    - com.ms.funcionario.web.controllers
