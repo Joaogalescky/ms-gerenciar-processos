@@ -55,10 +55,10 @@ public class SessaoVotacao implements Serializable {
     }
 
     public static Long converterTempo(String tempoVotacao) {
-        String[] parts = tempoVotacao.split(":");
-        long hours = Long.parseLong(parts[0]);
-        long minutes = Long.parseLong(parts[1]);
-        return TimeUnit.HOURS.toMillis(hours) + TimeUnit.MINUTES.toMillis(minutes);
+        String[] divisor = tempoVotacao.split(":");
+        long horas = Long.parseLong(divisor[0]);
+        long minutos = Long.parseLong(divisor[1]);
+        return TimeUnit.HOURS.toMillis(horas) + TimeUnit.MINUTES.toMillis(minutos);
     }
 
     @Override
