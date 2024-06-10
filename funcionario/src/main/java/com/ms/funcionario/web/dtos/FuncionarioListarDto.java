@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class FuncionarioListarDto {
     private String nome;
-    private Date dataNasc;
+    private String dataNasc;
     private String cpf;
     private String sexo;
 }

@@ -12,7 +12,7 @@ public class FuncionarioCadastrarDto {
     @NonNull
     private String nome;
     @NonNull
-    private Date dataNasc;
+    private String dataNasc;
     @NonNull
     private String cpf;
     @NonNull

@@ -23,7 +23,7 @@ public class Funcionario implements Serializable {
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "data_nascimento", nullable = false)
-    private Date dataNasc;
+    private String dataNasc;
     @Column(name = "cpf", nullable = false, length = 11, unique = true)
     private String cpf;
     @Column(name = "sexo", nullable = false, length = 1)
