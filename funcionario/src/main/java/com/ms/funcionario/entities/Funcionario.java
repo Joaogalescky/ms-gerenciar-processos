@@ -28,4 +28,12 @@ public class Funcionario implements Serializable {
     private String cpf;
     @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
+
+    public Funcionario(Long id, String nome, Date dataNasc, String cpf, String sexo) {
+        this.id = id;
+        this.nome = nome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.sexo = sexo;
+    }
 }
