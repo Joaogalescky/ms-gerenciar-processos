@@ -20,8 +20,12 @@ public class GatewayApplication {
 						.uri("http://localhost:8081/api/v1/propostas"))
 				.route(r -> r.path("/api/v1/funcionarios/**")
 						.uri("http://localhost:8082/api/v1/funcionarios"))
-				.route(r -> r.path("/api/v1/resultado/**")
+				.route(r -> r.path("/api/v1/resultados/**")
 						.uri("http://localhost:8083/api/v1/resultado"))
+				.route(r -> r.path("/api/v1/sessaovotacao/**")
+						.uri("http://localhost:8083/api/v1/sessaovotacao"))
+				.route(r -> r.path("/api/v1/votos/**")
+						.uri("http://localhost:8083/api/v1/votos"))
 				.build();
 	}
 }
