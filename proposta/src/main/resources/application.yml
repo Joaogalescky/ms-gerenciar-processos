@@ -1,30 +1,29 @@
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
   application:
-    name: proposta
-  task:
-    scheduling:
-      pool:
-        size: 5
-  jpa:
+    name: Proposta
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+  properties:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: false
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:file:C:/data/testedb
-    username: sa
-    password:
-
+      format_sql: false
+  database-platform: org.hibernate.dialect.H2Dialect
+h2:
+  console:
+    enabled: true
+    path: /h2-console
+datasource:
+  driver-class-name: org.h2.Driver
+  url: jdbc:h2:file:C:/data/testedb
+  username: sa
+  password:
 server:
   port: 8081
-
 management:
   endpoints:
     enabled-by-default: false
@@ -47,7 +46,6 @@ management:
       enabled: true
     java:
       enabled: true
-
 info:
   application:
     nome: API de MS-Proposta

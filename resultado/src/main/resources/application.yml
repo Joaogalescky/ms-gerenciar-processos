@@ -1,13 +1,16 @@
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
   application:
-    name: resultado
+    name: Resultado
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
         format_sql: false
 
   h2:
@@ -19,7 +22,6 @@ spring:
     url: jdbc:h2:file:C:/data/testedb
     username: sa
     password:
-
 server:
   port: 8083
 
