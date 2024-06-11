@@ -52,8 +52,8 @@ info:
     descricao: API para gerenciamento de funcionario
 springdoc:
   swagger-ui:
-    path: /docs-park.html
+    path: /ms-microservicos.html
   api-docs:
-    path: /docs-park.html
+    path: /ms-microservicos.html
   packages-to-scan:
     - com.ms.funcionario.web.controllers
