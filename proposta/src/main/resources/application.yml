@@ -50,3 +50,10 @@ info:
   application:
     nome: API de MS-Proposta
     descricao: API para gerenciamento de proposta
+springdoc:
+  swagger-ui:
+    path: /ms-microservicos.html
+  api-docs:
+    path: /ms-microservicos.html
+  packages-to-scan:
+    - com.ms.proposta.web.controllers

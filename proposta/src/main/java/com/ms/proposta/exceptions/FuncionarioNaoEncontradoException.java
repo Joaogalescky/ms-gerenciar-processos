@@ -1,4 +1,4 @@
-package com.ms.proposta.web.exceptions;
+package com.ms.proposta.exceptions;
 
 public class FuncionarioNaoEncontradoException extends RuntimeException {
     public FuncionarioNaoEncontradoException(Long idFuncionario) {

@@ -1,6 +1,5 @@
 package com.ms.proposta.entities;
 
-import com.ms.proposta.Enum.Status;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
