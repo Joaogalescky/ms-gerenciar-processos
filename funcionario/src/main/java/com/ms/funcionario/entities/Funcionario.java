@@ -1,7 +1,9 @@
 package com.ms.funcionario.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ms.funcionario.web.dtos.FuncionarioCadastrarDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.Date;
 @Entity(name = "funcionario")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Funcionario implements Serializable {
 
     @Id
@@ -28,4 +31,13 @@ public class Funcionario implements Serializable {
     private String cpf;
     @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
+
+    public Funcionario (FuncionarioCadastrarDto funcionarioCadastrarDto) {
+        this.id = funcionarioCadastrarDto.getId();
+        this.nome = funcionarioCadastrarDto.getNome();
+        this.dataNasc = funcionarioCadastrarDto.getDataNasc();
+        this.cpf = funcionarioCadastrarDto.getCpf();
+        this.sexo = funcionarioCadastrarDto.getSexo();
+    }
+
 }

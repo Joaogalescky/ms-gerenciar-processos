@@ -6,6 +6,7 @@ import java.util.Date;
 
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 public class FuncionarioCadastrarDto {
     @NonNull
     private Long id;
@@ -17,4 +18,6 @@ public class FuncionarioCadastrarDto {
     private String cpf;
     @NonNull
     private String sexo;
+
+
 }
