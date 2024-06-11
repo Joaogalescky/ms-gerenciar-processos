@@ -1,4 +1,4 @@
-package com.ms.resultado.web.exceptions;
+package com.ms.resultado.exceptions;
 
 public class VotoDuplicadoException extends RuntimeException{
     public VotoDuplicadoException(String message) {

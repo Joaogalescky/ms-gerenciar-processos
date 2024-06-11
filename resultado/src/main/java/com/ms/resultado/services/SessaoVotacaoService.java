@@ -2,11 +2,11 @@ package com.ms.resultado.services;
 
 import com.ms.resultado.entities.SessaoVotacao;
 import com.ms.resultado.enums.StatusSessao;
+import com.ms.resultado.exceptions.EntidadeNaoEncontradaException;
 import com.ms.resultado.repositories.PropostaClient;
 import com.ms.resultado.repositories.SessaoVotacaoRepository;
 import com.ms.resultado.web.dtos.IniciarVotacaoDto;
 import com.ms.resultado.web.dtos.PropostaDto;
-import com.ms.resultado.web.exceptions.PropostaNaoEncontradaException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +24,7 @@ public class SessaoVotacaoService {
     public SessaoVotacao iniciarVotacao(IniciarVotacaoDto iniciarVotacaoDto) {
         PropostaDto propostaDto = propostaClient.buscarPorId(iniciarVotacaoDto.getIdProposta());
         if (propostaDto == null) {
-            throw new PropostaNaoEncontradaException("Proposta com id " + iniciarVotacaoDto.getIdProposta() + " não encontrada");
+            throw new EntidadeNaoEncontradaException("Proposta com id " + iniciarVotacaoDto.getIdProposta() + " não encontrada");
         }
 
         SessaoVotacao sessaoVotacao = new SessaoVotacao();
@@ -46,7 +46,7 @@ public class SessaoVotacaoService {
 
     public SessaoVotacao buscarSessaoPorId(Long id) {
         SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.findById(id)
-                .orElseThrow(() -> new PropostaNaoEncontradaException("Sessão de votação com id " + id + " não encontrada"));
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("Sessão de votação com id " + id + " não encontrada"));
         sessaoVotacao.setTempoRestante(sessaoVotacao.getTempoRestante());
         return sessaoVotacao;
     }

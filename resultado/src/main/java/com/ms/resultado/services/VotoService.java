@@ -8,9 +8,8 @@ import com.ms.resultado.repositories.VotoRepository;
 import com.ms.resultado.repositories.FuncionarioClient;
 import com.ms.resultado.web.dtos.VotoCadastroDto;
 import com.ms.resultado.web.dtos.mappers.VotoMapper;
-import com.ms.resultado.web.exceptions.EntidadeNaoEncontradaException;
-import com.ms.resultado.web.exceptions.VotoDuplicadoException;
-import com.ms.resultado.web.exceptions.PropostaNaoEncontradaException;
+import com.ms.resultado.exceptions.EntidadeNaoEncontradaException;
+import com.ms.resultado.exceptions.VotoDuplicadoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,9 +38,9 @@ public class VotoService {
         try {
             SessaoVotacao sessaoVotacao = sessaoVotacaoRepository.findById(sessaoVotacaoId).orElseThrow(() -> new EntidadeNaoEncontradaException("Sessão de votação não encontrada."));
             if (sessaoVotacao.getStatus() == StatusSessao.INATIVO) {
-                throw new PropostaNaoEncontradaException("Não é possível votar em uma sessão de votação INATIVA");
+                throw new EntidadeNaoEncontradaException("Não é possível votar em uma sessão de votação INATIVA");
             }
-        } catch (PropostaNaoEncontradaException e) {
+        } catch (EntidadeNaoEncontradaException e) {
             throw e;
         } catch (Exception e) {
             throw new EntidadeNaoEncontradaException("Erro ao verificar a sessão de votação.");
