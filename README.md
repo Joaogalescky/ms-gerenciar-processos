@@ -7,11 +7,16 @@ Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para ge
 - Java 17
 - Spring Boot 3.3.0
 - Maven
+- Swagger
+- Trello
+- OpenFeign
+- Postman
+- Lombok
+- Docker
 - H2 Database
 - Spring Cloud Gateway
 - Spring Actuator
 - Spring Data JPA
-- Docker
 
 ## Arquitetura de Microsserviços
 1. **API Gateway**: Ponto de entrada da aplicação.
