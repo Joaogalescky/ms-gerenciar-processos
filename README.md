@@ -89,6 +89,7 @@ Cadastro de Funcionário: POST /api/v1/funcionarios
 }
 ```
 Edição de Funcionário: PUT /api/v1/funcionarios/{id}
+- Corpo da requisição (JSON):
 ```bash
 {
     "nome": "Novo nome de Funcionário",
