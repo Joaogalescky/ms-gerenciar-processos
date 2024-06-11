@@ -52,3 +52,10 @@ info:
   application:
     nome: API de MS-Resultado
     descricao: API para gerenciamento de resultado
+springdoc:
+  swagger-ui:
+    path: /ms-microservicos.html
+  api-docs:
+    path: /ms-microservicos.html
+  packages-to-scan:
+    - com.ms.resultado.web.controllers
