@@ -18,6 +18,4 @@ public class FuncionarioCadastrarDto {
     private String cpf;
     @NonNull
     private String sexo;
-
-
 }

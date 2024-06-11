@@ -1,7 +1,8 @@
 package com.ms.funcionario.services;
 
 import com.ms.funcionario.entities.Funcionario;
-import com.ms.funcionario.exceptions.DadosFuncionarioInvalidos;
+import com.ms.funcionario.exceptions.DadosFuncionarioInvalidosException;
+import com.ms.funcionario.exceptions.FuncionarioNaoEncontradoException;
 import com.ms.funcionario.repositories.FuncionarioRepository;
 import com.ms.funcionario.web.dtos.FuncionarioCadastrarDto;
 import com.ms.funcionario.web.dtos.FuncionarioListarDto;
@@ -66,7 +67,7 @@ class FuncionarioServiceTest {
     void cadastrarFuncionarioCase1() {
         FuncionarioCadastrarDto funcionarioCadastrarDto = new FuncionarioCadastrarDto(1L, "", "10/11/2005", "12345678912", "m");
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.cadastrarFuncionario(funcionarioCadastrarDto);
         });
 
@@ -79,7 +80,7 @@ class FuncionarioServiceTest {
     void cadastrarFuncionarioCase2() {
         FuncionarioCadastrarDto funcionarioCadastrarDto = new FuncionarioCadastrarDto(1L, "Pedro", "10/11/2005", "123", "m");
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.cadastrarFuncionario(funcionarioCadastrarDto);
         });
 
@@ -94,7 +95,7 @@ class FuncionarioServiceTest {
 
         when(funcionarioRepository.existsByCpf("12345678912")).thenReturn(true);
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.cadastrarFuncionario(funcionarioCadastrarDto);
         });
 
@@ -123,11 +124,11 @@ class FuncionarioServiceTest {
     void buscarPorIdCase1() {
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.empty());
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        FuncionarioNaoEncontradoException exception = assertThrows(FuncionarioNaoEncontradoException.class, () -> {
             funcionarioService.buscarPorId(1L);
         });
 
-        assertEquals("Funcionario id=1 não encontrado", exception.getMessage());
+        assertEquals("Funcionário id=1 não encontrado.", exception.getMessage());
         verify(funcionarioRepository, times(1)).findById(1L);
     }
 
@@ -162,7 +163,7 @@ class FuncionarioServiceTest {
 
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.alterarFuncionario(1L, funcionarioListarDto);
         });
 
@@ -181,7 +182,7 @@ class FuncionarioServiceTest {
 
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.alterarFuncionario(1L, funcionarioListarDto);
         });
 
@@ -202,7 +203,7 @@ class FuncionarioServiceTest {
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.of(funcionario));
         when(funcionarioRepository.existsByCpf("98765432100")).thenReturn(true);
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        DadosFuncionarioInvalidosException exception = assertThrows(DadosFuncionarioInvalidosException.class, () -> {
             funcionarioService.alterarFuncionario(1L, funcionarioListarDto);
         });
 
@@ -231,12 +232,13 @@ class FuncionarioServiceTest {
     void deletarFuncionarioCase1() {
         when(funcionarioRepository.findById(1L)).thenReturn(Optional.empty());
 
-        DadosFuncionarioInvalidos exception = assertThrows(DadosFuncionarioInvalidos.class, () -> {
+        FuncionarioNaoEncontradoException exception = assertThrows(FuncionarioNaoEncontradoException.class, () -> {
             funcionarioService.deletarFuncionario(1L);
         });
 
-        assertEquals("Funcionario id=1 não encontrado", exception.getMessage());
+        assertEquals("Funcionário id=1 não encontrado.", exception.getMessage());
         verify(funcionarioRepository, times(1)).findById(1L);
         verify(funcionarioRepository, never()).delete(any(Funcionario.class));
     }
+
 }
