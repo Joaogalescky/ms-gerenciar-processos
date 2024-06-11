@@ -31,9 +31,9 @@ class FuncionarioControllerIntegrationTest {
         Iterable<Funcionario> funcionarios = List.of(funcionario1, funcionario2);
         Mockito.when(funcionarioService.listarFuncionario()).thenReturn((List<Funcionario>) funcionarios);
 
-        ResponseEntity<List> response = restTemplate.getForEntity("/api/v1/funcionarios", List.class);
+        ResponseEntity<List> resposta = restTemplate.getForEntity("/api/v1/funcionarios", List.class);
 
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
         Mockito.verify(funcionarioService, Mockito.times(1)).listarFuncionario();
     }
 
@@ -43,9 +43,9 @@ class FuncionarioControllerIntegrationTest {
         Funcionario funcionarioMock = new Funcionario(1L, "João", "1980-01-01", "12345678901", "M");
         Mockito.when(funcionarioService.cadastrarFuncionario(funcionarioDto)).thenReturn(funcionarioMock);
 
-        ResponseEntity<FuncionarioCadastrarDto> response = restTemplate.postForEntity("/api/v1/funcionarios", funcionarioDto, FuncionarioCadastrarDto.class);
+        ResponseEntity<FuncionarioCadastrarDto> resposta = restTemplate.postForEntity("/api/v1/funcionarios", funcionarioDto, FuncionarioCadastrarDto.class);
 
-        Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        Assertions.assertEquals(HttpStatus.CREATED, resposta.getStatusCode());
         Mockito.verify(funcionarioService, Mockito.times(1)).cadastrarFuncionario(funcionarioDto);
     }
 
@@ -55,9 +55,9 @@ class FuncionarioControllerIntegrationTest {
         Funcionario funcionarioMock = new Funcionario(id, "João", "1980-01-01", "12345678901", "M");
         Mockito.when(funcionarioService.buscarPorId(id)).thenReturn(funcionarioMock);
 
-        ResponseEntity<FuncionarioListarDto> response = restTemplate.getForEntity("/api/v1/funcionarios/{id}", FuncionarioListarDto.class, id);
+        ResponseEntity<FuncionarioListarDto> resposta = restTemplate.getForEntity("/api/v1/funcionarios/{id}", FuncionarioListarDto.class, id);
 
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
         Mockito.verify(funcionarioService, Mockito.times(1)).buscarPorId(id);
     }
 
@@ -68,9 +68,9 @@ class FuncionarioControllerIntegrationTest {
         Funcionario funcionarioMock = new Funcionario(id, "João", "1980-01-01", "12345678901", "M");
         Mockito.when(funcionarioService.alterarFuncionario(id, funcionarioDto)).thenReturn(funcionarioMock);
 
-        ResponseEntity<FuncionarioCadastrarDto> response = restTemplate.exchange("/api/v1/funcionarios/{id}", HttpMethod.PUT, new HttpEntity<>(funcionarioDto), FuncionarioCadastrarDto.class, id);
+        ResponseEntity<FuncionarioCadastrarDto> resposta = restTemplate.exchange("/api/v1/funcionarios/{id}", HttpMethod.PUT, new HttpEntity<>(funcionarioDto), FuncionarioCadastrarDto.class, id);
 
-        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Assertions.assertEquals(HttpStatus.OK, resposta.getStatusCode());
         Mockito.verify(funcionarioService, Mockito.times(1)).alterarFuncionario(id, funcionarioDto);
     }
 
@@ -79,9 +79,9 @@ class FuncionarioControllerIntegrationTest {
         Long id = 1L;
         Mockito.doNothing().when(funcionarioService).deletarFuncionario(id);
 
-        ResponseEntity<Void> response = restTemplate.exchange("/api/v1/funcionarios/{id}", HttpMethod.DELETE, null, Void.class, id);
+        ResponseEntity<Void> resposta = restTemplate.exchange("/api/v1/funcionarios/{id}", HttpMethod.DELETE, null, Void.class, id);
 
-        Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        Assertions.assertEquals(HttpStatus.NO_CONTENT, resposta.getStatusCode());
         Mockito.verify(funcionarioService, Mockito.times(1)).deletarFuncionario(id);
     }
 }
