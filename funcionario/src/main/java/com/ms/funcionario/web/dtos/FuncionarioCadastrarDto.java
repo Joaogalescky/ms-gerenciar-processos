@@ -6,15 +6,18 @@ import java.util.Date;
 
 @NoArgsConstructor
 @Data
+@AllArgsConstructor
 public class FuncionarioCadastrarDto {
     @NonNull
     private Long id;
     @NonNull
     private String nome;
     @NonNull
-    private Date dataNasc;
+    private String dataNasc;
     @NonNull
     private String cpf;
     @NonNull
     private String sexo;
+
+
 }
