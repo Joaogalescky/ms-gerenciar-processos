@@ -40,7 +40,6 @@ class FuncionarioRepositoryTest {
 
     private Funcionario cadastrarFuncionario(FuncionarioCadastrarDto funcionarioCadastrarDto) {
         Funcionario novoFuncionario = new Funcionario(funcionarioCadastrarDto);
-        this.entityManager.persist(novoFuncionario);
-        return novoFuncionario;
+        return entityManager.merge(novoFuncionario);
     }
 }
