@@ -1,14 +1,14 @@
 package com.ms.proposta.services;
 
-import com.ms.proposta.Enum.Status;
 import com.ms.proposta.entities.Proposta;
+import com.ms.proposta.exceptions.DadosFuncionarioInvalidosException;
 import com.ms.proposta.exceptions.IdPropostaNaoEncontradoException;
 import com.ms.proposta.repositories.FuncionarioClient;
 import com.ms.proposta.repositories.PropostaRepository;
 import com.ms.proposta.web.dtos.FuncionarioDto;
 import com.ms.proposta.web.dtos.PropostaAtualizacaoDto;
 import com.ms.proposta.web.dtos.PropostaCadastroDto;
-import com.ms.proposta.web.exceptions.FuncionarioNaoEncontradoException;
+import com.ms.proposta.exceptions.FuncionarioNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,8 +53,12 @@ public class PropostaService {
     }
 
     public Proposta alterarProposta(Long idProposta, PropostaAtualizacaoDto propostaDto) {
-        Proposta propostaExistente = buscarPorId(idProposta);
 
+        if (propostaDto.getNome().isEmpty() || propostaDto.getDescricao().isEmpty()){
+            throw new DadosFuncionarioInvalidosException("Dados obrigatórios da proposta estão incompletos ou inválidos");
+        }
+
+        Proposta propostaExistente = buscarPorId(idProposta);
         propostaExistente.setNome(propostaDto.getNome());
         propostaExistente.setDescricao(propostaDto.getDescricao());
 
@@ -62,7 +66,9 @@ public class PropostaService {
     }
 
     public void deletarProposta(Long id) {
-        Proposta proposta = buscarPorId(id);
+        Proposta proposta = propostaRepository.findById(id).orElseThrow(
+                () -> new IdPropostaNaoEncontradoException(String.format("Proposta id=%s não encontrada", id))
+        );
         propostaRepository.delete(proposta);
     }
 }
