@@ -2,6 +2,7 @@ package com.ms.funcionario.services;
 
 import com.ms.funcionario.entities.Funcionario;
 import com.ms.funcionario.exceptions.DadosFuncionarioInvalidosException;
+import com.ms.funcionario.exceptions.FuncionarioNaoEncontradoException;
 import com.ms.funcionario.repositories.FuncionarioRepository;
 import com.ms.funcionario.web.dtos.FuncionarioCadastrarDto;
 import com.ms.funcionario.web.dtos.FuncionarioListarDto;
@@ -46,7 +47,7 @@ public class FuncionarioService {
 
     public Funcionario buscarPorId(Long id) {
         return funcionarioRepository.findById(id).orElseThrow(
-                () -> new DadosFuncionarioInvalidosException(String.format("Funcionario id=%s não encontrado", id))
+                () -> new FuncionarioNaoEncontradoException(id)
         );
     }
 
@@ -80,7 +81,7 @@ public class FuncionarioService {
 
     public void deletarFuncionario(Long id) {
         Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
-                () -> new DadosFuncionarioInvalidosException(String.format("Funcionario id=%s não encontrado", id))
+                () -> new FuncionarioNaoEncontradoException(id)
         );
         funcionarioRepository.delete(funcionario);
     }
