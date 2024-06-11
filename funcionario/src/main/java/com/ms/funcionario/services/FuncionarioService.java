@@ -1,7 +1,8 @@
 package com.ms.funcionario.services;
 
 import com.ms.funcionario.entities.Funcionario;
-import com.ms.funcionario.exceptions.DadosFuncionarioInvalidos;
+import com.ms.funcionario.exceptions.DadosFuncionarioInvalidosException;
+import com.ms.funcionario.exceptions.FuncionarioNaoEncontradoException;
 import com.ms.funcionario.repositories.FuncionarioRepository;
 import com.ms.funcionario.web.dtos.FuncionarioCadastrarDto;
 import com.ms.funcionario.web.dtos.FuncionarioListarDto;
@@ -26,17 +27,17 @@ public class FuncionarioService {
     public Funcionario cadastrarFuncionario(FuncionarioCadastrarDto funcionarioCadastrarDto) {
         if (funcionarioCadastrarDto.getNome().isEmpty() || funcionarioCadastrarDto.getCpf().isEmpty() || funcionarioCadastrarDto.getSexo().isEmpty()
         ) {
-            throw new DadosFuncionarioInvalidos("Dados obrigatórios do funcionário estão imcompletos ou inválidos");
+            throw new DadosFuncionarioInvalidosException("Dados obrigatórios do funcionário estão imcompletos ou inválidos");
         }
 
         String cpf = funcionarioCadastrarDto.getCpf().replaceAll("\\D", "");
 
         if (cpf.length() != 11) {
-            throw new DadosFuncionarioInvalidos("CPF deve ter 11 dígitos");
+            throw new DadosFuncionarioInvalidosException("CPF deve ter 11 dígitos");
         }
 
         if (funcionarioRepository.existsByCpf(cpf)) {
-            throw new DadosFuncionarioInvalidos(String.format("Funcionario CPF=%s já existente", cpf));
+            throw new DadosFuncionarioInvalidosException(String.format("Funcionario CPF=%s já existente", cpf));
         }
 
         Funcionario funcionario = FuncionarioMapper.toFuncionarioCadastrar(funcionarioCadastrarDto);
@@ -46,7 +47,7 @@ public class FuncionarioService {
 
     public Funcionario buscarPorId(Long id) {
         return funcionarioRepository.findById(id).orElseThrow(
-                () -> new DadosFuncionarioInvalidos(String.format("Funcionario id=%s não encontrado", id))
+                () -> new FuncionarioNaoEncontradoException(id)
         );
     }
 
@@ -58,17 +59,17 @@ public class FuncionarioService {
                 || funcionarioListarDto.getCpf().isEmpty()
                 || funcionarioListarDto.getDataNasc() == null
                 || funcionarioListarDto.getSexo().isEmpty()) {
-            throw new DadosFuncionarioInvalidos("Dados obrigatórios do funcionário estão imcompletos ou inválidos");
+            throw new DadosFuncionarioInvalidosException("Dados obrigatórios do funcionário estão imcompletos ou inválidos");
         }
 
         String novoCpf = funcionarioListarDto.getCpf().replaceAll("\\D", "");
 
         if (novoCpf.length() != 11) {
-            throw new DadosFuncionarioInvalidos("CPF deve ter 11 dígitos");
+            throw new DadosFuncionarioInvalidosException("CPF deve ter 11 dígitos");
         }
 
         if (!funcionario.getCpf().equals(novoCpf) && funcionarioRepository.existsByCpf(novoCpf)) {
-            throw new DadosFuncionarioInvalidos("CPF já existente");
+            throw new DadosFuncionarioInvalidosException("CPF já existente");
         }
 
         funcionario.setNome(funcionarioListarDto.getNome());
@@ -80,7 +81,7 @@ public class FuncionarioService {
 
     public void deletarFuncionario(Long id) {
         Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
-                () -> new DadosFuncionarioInvalidos(String.format("Funcionario id=%s não encontrado", id))
+                () -> new FuncionarioNaoEncontradoException(id)
         );
         funcionarioRepository.delete(funcionario);
     }
