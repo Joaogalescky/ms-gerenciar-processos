@@ -79,7 +79,24 @@ mvn spring-boot:run
 ### 4. Endpoints da API
 ## Funcionários
 Cadastro de Funcionário: POST /api/v1/funcionarios
+- Corpo da requisição (JSON):
+```bash
+{
+    "nome": "Nome do Funcionário",
+    "cpf": "11111111111",
+    "dataNasc": "(yyyy-MM-dd)",
+    "sexo": "(F ou M)" 
+}
+```
 Edição de Funcionário: PUT /api/v1/funcionarios/{id}
+```bash
+{
+    "nome": "Novo nome de Funcionário",
+    "cpf": "22222222222",
+    "dataNasc": "(yyyy-MM-dd)",
+    "sexo": "(F ou M)" 
+}
+```
 Deletar Funcionário: DELETE /api/v1/funcionarios/{id}
 Buscar Funcionário: GET /api/v1/funcionarios/{id}
 Listagem de Funcionários: GET /api/v1/funcionarios/
