@@ -36,8 +36,7 @@ public class SessaoVotacaoController {
                             responseCode = "404",
                             description = "Recurso não encontrado",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
-                    )
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                     @ApiResponse(
                             responseCode = "409",
                             description = "Recurso já iniciado",
