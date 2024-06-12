@@ -14,15 +14,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Tag(name = "Propostas", description ="Contém todas as operações relativas aos para cadastro, edição e leitura de uma proposta.")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/propostas")
-@RequiredArgsConstructor
 public class PropostaController {
 
     @Autowired
@@ -30,26 +31,45 @@ public class PropostaController {
 
     private final FuncionarioClient funcionarioClient;
 
-    @Operation(summary = "Cadastrar uma nova proposta", description = "Recurso para cadastrar uma nova proposta",
+    @Operation(
+            summary = "Cadastrar proposta",
+            description = "Recurso para cadastrar proposta",
             responses = {
-            @ApiResponse(responseCode = "201", description = "Proposta cadastrada com sucessso",
-                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
-                    @ApiResponse(responseCode = "409", description = "Proposta ja cadastrada no sistema",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "422", description = "Recurso não processado por dados de entrada inválidos",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "Recurso cadastrado com sucesso!",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
+                    @ApiResponse(
+                            responseCode = "409",
+                            description = "Recurso já cadastrado no sistema",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(
+                            responseCode = "422",
+                            description = "Recurso não processado por dados de entrada inválidos",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @PostMapping
-    public ResponseEntity<Proposta> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
+    public ResponseEntity<PropostaCadastroDto> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
         Proposta proposta = propostaService.cadastrarProposta(propostaDto);
-        return ResponseEntity.ok(proposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(propostaDto);
     }
 
-    @Operation(summary = "Listar Propostas", description = "Listar Propostas",
+    @Operation(
+            summary = "Listar propostas",
+            description = "Recurso para listar propostas",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "Proposta listada com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class)))
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Recurso listado com sucesso!",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = PropostaCadastroDto.class))
+                    )
             }
     )
     @GetMapping
@@ -58,12 +78,19 @@ public class PropostaController {
         return ResponseEntity.ok(propostas);
     }
 
-    @Operation(summary = "Recuperar uma proposta pelo id", description = "Recuperar uma proposta pelo  id",
+    @Operation(
+            summary = "Buscar proposta",
+            description = "Recurso para buscar proposta por ID",
             responses = {
-                    @ApiResponse(responseCode = "200", description = "Proposta recuperada com sucessso",
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Recurso buscado com sucesso!",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
-                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Recurso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @GetMapping("/{id}")
@@ -72,14 +99,26 @@ public class PropostaController {
         return ResponseEntity.ok(proposta);
     }
 
-    @Operation(summary = "Atualizar proposta", description = "Atualizar proposta",
+    @Operation(
+            summary = "Atualizar proposta",
+            description = "Recurso para atualizar proposta",
             responses = {
-                    @ApiResponse(responseCode = "204", description = "Proposta atualizada com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class))),
-                    @ApiResponse(responseCode = "400", description = "Proposta não confere",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                    @ApiResponse(
+                            responseCode = "204",
+                            description = "Recurso atualizada com sucesso!",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = Void.class))),
+                    @ApiResponse(
+                            responseCode = "400",
+                            description = "Proposta não confere",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(
+                            responseCode = "404",
+                            description = "Recurso não encontrado",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @PutMapping("/{id}")
@@ -88,31 +127,18 @@ public class PropostaController {
         return ResponseEntity.ok(proposta);
     }
 
-    @Operation(summary = "Deletar proposta", description = "Deletar proposta",
+    @Operation(summary = "Deletar proposta", description = "Recurso para deletar proposta",
             responses = {
-                    @ApiResponse(responseCode = "204", description = "Proposta deletada com sucessso",
+                    @ApiResponse(responseCode = "204", description = "Recurso deletada com sucesso!",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = Void.class))),
                     @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarProposta(@PathVariable Long id) {
         propostaService.deletarProposta(id);
         return ResponseEntity.noContent().build();
-    }
-
-    @Operation(summary = "Recuperar um funcionario pelo id", description = "Recuperar um funcionario pelo id",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Funcionario recuperado com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
-                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
-            }
-    )
-    @GetMapping("/funcionarios/{id}")
-    public ResponseEntity<FuncionarioDto> buscarFuncionario(@PathVariable Long id) {
-        FuncionarioDto funcionario = funcionarioClient.buscarPorId(id);
-        return ResponseEntity.ok(funcionario);
     }
 }

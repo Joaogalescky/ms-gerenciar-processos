@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class VotoService {
-
     private final VotoRepository votoRepository;
     private final FuncionarioClient funcionarioClient;
     private final SessaoVotacaoRepository sessaoVotacaoRepository;

@@ -10,13 +10,12 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
 
-@Table(name = "funcionario")
-@Entity(name = "funcionario")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "funcionario")
+@Table(name = "funcionario")
 public class Funcionario implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
@@ -32,12 +31,11 @@ public class Funcionario implements Serializable {
     @Column(name = "sexo", nullable = false, length = 1)
     private String sexo;
 
-    public Funcionario (FuncionarioCadastrarDto funcionarioCadastrarDto) {
+    public Funcionario(FuncionarioCadastrarDto funcionarioCadastrarDto) {
         this.id = funcionarioCadastrarDto.getId();
         this.nome = funcionarioCadastrarDto.getNome();
         this.dataNasc = funcionarioCadastrarDto.getDataNasc();
         this.cpf = funcionarioCadastrarDto.getCpf();
         this.sexo = funcionarioCadastrarDto.getSexo();
     }
-
 }

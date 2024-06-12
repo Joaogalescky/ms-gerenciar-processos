@@ -33,7 +33,8 @@ public class FuncionarioController {
                             responseCode = "200",
                             description = "Recurso listado com sucesso!",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = Funcionario.class)))
+                                    mediaType = "application/json", schema = @Schema(implementation = Funcionario.class))
+                    )
             }
     )
     @GetMapping
@@ -55,7 +56,8 @@ public class FuncionarioController {
                             responseCode = "409",
                             description = "Recurso não processado por dados de entrada inválidos",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @PostMapping
@@ -77,7 +79,8 @@ public class FuncionarioController {
                             responseCode = "404",
                             description = "Recurso não encontrado",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @GetMapping("/{id}")
@@ -107,7 +110,8 @@ public class FuncionarioController {
                             responseCode = "409",
                             description = "Recurso não processado por dados de entrada inválidos",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @PutMapping("/{id}")
@@ -129,7 +133,8 @@ public class FuncionarioController {
                             responseCode = "404",
                             description = "Funcionário não encontrado no sistema",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @DeleteMapping("/{id}")

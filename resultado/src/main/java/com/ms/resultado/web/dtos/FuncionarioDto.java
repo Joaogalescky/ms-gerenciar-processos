@@ -1,6 +1,5 @@
 package com.ms.resultado.web.dtos;
 
-
 import lombok.*;
 
 @Getter

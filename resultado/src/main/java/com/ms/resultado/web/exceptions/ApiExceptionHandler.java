@@ -1,6 +1,5 @@
 package com.ms.resultado.web.exceptions;
 
-
 import com.ms.resultado.exceptions.EntidadeNaoEncontradaException;
 import com.ms.resultado.exceptions.VotoDuplicadoException;
 import jakarta.servlet.http.HttpServletRequest;

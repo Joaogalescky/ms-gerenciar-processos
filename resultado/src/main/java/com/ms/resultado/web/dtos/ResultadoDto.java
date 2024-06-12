@@ -4,10 +4,9 @@ import com.ms.resultado.enums.Escolha;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class ResultadoDto {
-
     private Long numeroSessao;
     private int votosAprovados;
     private int votosReprovados;

@@ -1,6 +1,5 @@
 package com.ms.resultado.entities;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +21,4 @@ public class Resultado {
 
     @Column(name = "votos_reprovados")
     private int votosReprovados;
-
 }
