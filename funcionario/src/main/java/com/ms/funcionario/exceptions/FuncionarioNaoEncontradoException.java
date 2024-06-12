@@ -2,6 +2,6 @@ package com.ms.funcionario.exceptions;
 
 public class FuncionarioNaoEncontradoException extends RuntimeException {
     public FuncionarioNaoEncontradoException(Long idFuncionario) {
-        super("Funcionário ID '" + idFuncionario + "' não encontrado.");
+        super("Funcionário id=" + idFuncionario + " não encontrado.");
     }
 }
