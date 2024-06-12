@@ -47,6 +47,10 @@ public class ResultadoController {
     @GetMapping("/{idSessao}")
     public ResponseEntity<ResultadoDto> verResultado(@PathVariable Long idSessao) {
         ResultadoDto resultadoDto = resultadoService.verResultado(idSessao);
-        return ResponseEntity.ok(resultadoDto);
+        if (resultadoDto != null) {
+            return ResponseEntity.ok(resultadoDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
