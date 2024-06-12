@@ -1,4 +1,5 @@
-# Desafio 03  - Micro serviço para gestão de tomada de decições de uma empresa
+
+# Desafio 03  - Microsserviço para gestão de tomada de decições de uma empresa
 
 ## Introdução
 Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para gerenciar processos de tomada de decisões em uma empresa. Ele permite que equipes proponham e votem em diversas propostas para melhorias internas. O sistema é composto por diversos microsserviços, cada um responsável por uma parte específica da aplicação, sendo esses, o de funcionários, propostas e resultados.
@@ -46,33 +47,45 @@ Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para ge
 ### 1. Clonando o Repositório
 ```bash
 git clone https://github.com/CarlosMantovani/ms-gerenciar-processos.git
-cd ms-gerenciar-processos
 ```
 
 ### 2. Build do Projeto
 ```bash
+cd ms-gerenciar-processos/funcionario
+mvn clean install
+
+cd ms-gerenciar-processos/gateway
+mvn clean install
+
+cd ms-gerenciar-processos/proposta
+mvn clean install
+
+cd ms-gerenciar-processos/resultado
+mvn clean install
+
+cd ms-gerenciar-processos/springBootAdmin
 mvn clean install
 ```
 
 ### 3. Executando os Microsserviços
 ## API Gateway
 ```bash
-cd api-gateway
+cd ms-gerenciar-processos/gateway
 mvn spring-boot:run
 ```
 ## Serviço de Funcionário
 ```bash
-cd funcionario
+cd ms-gerenciar-processos/funcionario
 mvn spring-boot:run
 ```
 ## Serviço de Proposta
 ```bash
-cd proposta
+cd ms-gerenciar-processos/proposta
 mvn spring-boot:run
 ```
 ## Serviço de Resultado
 ```bash
-cd resultado
+cd ms-gerenciar-processos/resultado
 mvn spring-boot:run
 ```
 
@@ -135,7 +148,7 @@ Edição de Proposta:
 PUT /api/v1/propostas/{id}
 ```
 - Corpo de requisição (JSON):
-```
+```bash
 {
     "nome": "Nome da proposta",
     "descricao": "Descrição da proposta",
@@ -161,7 +174,7 @@ Cadastrar Votação:
 POST /api/v1/sessaovotacao
 ```
 - Corpo de requisição (JSON):
-```
+```bash
 {   
     "idProposta": ID Proposta,
     "tempoVotacao": "00:00"
@@ -172,7 +185,7 @@ Buscar Sessão:
 GET /api/v1/sessaovotacao/{id}
 ```
 - Corpo de requisição (JSON):
-```
+```bash
 {
     "nome": "Nome da sessão",
     "descricao": "Descrição da sessão",
@@ -186,7 +199,7 @@ Cadastrar Voto:
 POST /api/v1/votos
 ```
 - Corpo de requisição (JSON):
-```
+```bash
 {
     "idSessao": ID Sessão,
     "idFunc": ID Funcionário,
@@ -200,21 +213,51 @@ Buscar Resultado:
 GET api/v1/resultados/{idSessao}
 ```
 
+## Monitoramento - Métricas do Actuator
+Para acessar as métricas do actuator, há duas formas:
+
+**Postman:**
+
+ Actuator EndPoints
+```
+GET {porta da API}/actuator
+```
+ Health 
+```
+GET {porta da API}/actuator/health
+```
+ Info 
+```
+GET {porta da API}/actuator/info
+```
+ Metrics 
+```
+GET {porta da API}/actuator/metrics
+```
+**SpringBootAdmin:**
+```
+http/localhost:{porta da API}/applications
+```
+Para acessar as API's, há duas possibilidades, sendo:
+- Wallboard - acessível pelo menu onboard
+- Applications - acessível pela página home
+##
+
 ### 5. Versionamento da API
 Para versionar a API, adotamos a estratégia de versionamento na URL. Exemplo:
-GET /v1/funcionarios
-GET /v2/funcionarios
+```
+/v1/funcionarios
+```
+```
+/v2/funcionarios
+```
 Essa abordagem é simples e eficaz, permitindo que diferentes versões da API coexistam, facilitando a evolução e manutenção do sistema sem quebrar a compatibilidade com clientes antigos.
+Para executar os testes @GET,  @PUT,  @POST e @DELETE, é necessário a colocação da versão na URL para a execução das requisições.
 
-### 6. Monitoramento
-Cada microsserviço possui endpoints de monitoramento ativados pelo Spring Actuator. Exemplos:
-GET /actuator/health
-GET /actuator/metrics
-
-### 7. Considerações Finais
+### 6. Considerações Finais
 Este projeto demonstra uma arquitetura de microsserviços robusta, utilizando tecnologias modernas e práticas recomendadas para garantir escalabilidade, manutenibilidade e facilidade de desenvolvimento. Sinta-se à vontade para explorar e contribuir para este projeto!
 
-## Para contribuir com micro_servico, siga estas etapas:
+## Para contribuir com ms-gerenciar-processos:
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
 3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
