@@ -1,0 +1,59 @@
+spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+  application:
+    name: Funcionario
+jpa:
+  hibernate:
+    ddl-auto: update
+  show-sql: true
+  properties:
+    hibernate:
+      format_sql: false
+  database-platform: org.hibernate.dialect.H2Dialect
+h2:
+  console:
+    enabled: true
+    path: /h2-console
+datasource:
+  driver-class-name: org.h2.Driver
+  url: jdbc:h2:file:C:/data/testedb
+  username: sa
+  password:
+server:
+  port: 8082
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: metrics,health,info
+  metrics:
+    enable:
+      executor: false
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+    info:
+      enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+info:
+  application:
+    nome: API de MS-Funcionario
+    descricao: API para gerenciamento de funcionario
+springdoc:
+  swagger-ui:
+    path: /ms-microservicos.html
+  api-docs:
+    path: /ms-microservicos.html
+  packages-to-scan:
+    - com.ms.funcionario.web.controllers

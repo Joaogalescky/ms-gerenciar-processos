@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "657e8d30-c03d-47e9-b6ce-d89d79244025",
+		"name": "Resultado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34348800"
+	},
+	"item": [
+		{
+			"name": "Registrar Voto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idSessao\": 3,\r\n    \"idFunc\": 2,\r\n    \"escolha\": \"APROVADO\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/votos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"votos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Iniciar Votação",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \"idProposta\": 1,\r\n    \"tempoVotacao\": \"00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/sessaovotacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"sessaovotacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Sessão Por Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/sessaovotacao/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"sessaovotacao",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter Resultado Por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/api/v1/resultados/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"resultados",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
