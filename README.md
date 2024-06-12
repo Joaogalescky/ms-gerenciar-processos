@@ -1,4 +1,4 @@
-# Desafio 03 micro serviço para gestão de tomadade de decições de uma empresa
+# Desafio 03  - Micro serviço para gestão de tomada de decições de uma empresa
 
 ## Introdução
 Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para gerenciar processos de tomada de decisões em uma empresa. Ele permite que equipes proponham e votem em diversas propostas para melhorias internas. O sistema é composto por diversos microsserviços, cada um responsável por uma parte específica da aplicação, sendo esses, o de funcionários, propostas e resultados.
@@ -45,8 +45,8 @@ Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para ge
 
 ### 1. Clonando o Repositório
 ```bash
-git clone https://github.com/seu-usuario/sistema-decisao.git
-cd sistema-decisao
+git clone https://github.com/CarlosMantovani/ms-gerenciar-processos.git
+cd ms-gerenciar-processos
 ```
 
 ### 2. Build do Projeto
@@ -62,23 +62,26 @@ mvn spring-boot:run
 ```
 ## Serviço de Funcionário
 ```bash
-cd funconario-service
+cd funcionario
 mvn spring-boot:run
 ```
 ## Serviço de Proposta
 ```bash
-cd proposta-service
+cd proposta
 mvn spring-boot:run
 ```
 ## Serviço de Resultado
 ```bash
-cd resultado-service
+cd resultado
 mvn spring-boot:run
 ```
 
 ### 4. Endpoints da API
 ## Funcionários
-Cadastro de Funcionário: POST /api/v1/funcionarios
+Cadastro de Funcionário: 
+```
+POST /api/v1/funcionarios
+```
 - Corpo da requisição (JSON):
 ```bash
 {
@@ -88,7 +91,10 @@ Cadastro de Funcionário: POST /api/v1/funcionarios
     "sexo": "(F ou M)" 
 }
 ```
-Edição de Funcionário: PUT /api/v1/funcionarios/{id}
+Edição de Funcionário: 
+```
+PUT /api/v1/funcionarios/{id}
+```
 - Corpo da requisição (JSON):
 ```bash
 {
@@ -98,25 +104,100 @@ Edição de Funcionário: PUT /api/v1/funcionarios/{id}
     "sexo": "(F ou M)" 
 }
 ```
-Deletar Funcionário: DELETE /api/v1/funcionarios/{id}
-Buscar Funcionário: GET /api/v1/funcionarios/{id}
-Listagem de Funcionários: GET /api/v1/funcionarios/
-## Propostas
-Cadastro de Proposta: POST /api/v1/propostas
-Edição de Proposta: PUT /api/v1/propostas/{id}
-Deletar Proposta: DELETE /api/v1/propostas/{id}
-Buscar Funcionário: GET /api/v1/propostas/{id}
-## Votação
-Início de Sessão de Votação: POST /voting-sessions
-Receber Votos: POST /votes
-## Resultados
-Obter Resultado: GET /resultados/{idSessao}
-## Sessão de Votação
-Cadastro de Proposta: POST /api/v1/sessaovotacao
-Obter Resultado: GET /api/v1/sessaovotacao/{id}
-## Voto
-Cadastro de Proposta: POST /api/v1/votos
+Deletar Funcionário: 
+```
+DELETE /api/v1/funcionarios/{id}
+```
+Buscar Funcionário: 
+```
+GET /api/v1/funcionarios/{id}
+```
+Listagem de Funcionários: 
+```
+GET /api/v1/funcionarios/
+```
 
+## Propostas
+Cadastro de Proposta: 
+```
+POST /api/v1/propostas
+```
+- Corpo de requisição (JSON):
+```bash
+{
+    "nome": "Nome da proposta",
+    "descricao": "Descrição da proposta"
+}
+```
+Edição de Proposta: 
+```
+PUT /api/v1/propostas/{id}
+```
+- Corpo de requisição (JSON):
+```
+{
+    "nome": "Nome da proposta",
+    "descricao": "Descrição da proposta",
+    "status": "ATIVO ou INATIVO"
+}
+```
+Listar Proposta:
+```
+GET /api/v1/propostas
+```
+Buscar Proposta:
+```
+GET /api/v1/propostas/{id}
+```
+Deletar Proposta: 
+```
+DELETE /api/v1/propostas/{id}
+```
+
+## Sessão de Votação
+Cadastrar Votação: 
+```
+POST /api/v1/sessaovotacao
+```
+- Corpo de requisição (JSON):
+```
+{   
+    "idProposta": ID Proposta,
+    "tempoVotacao": "00:00"
+}
+```
+Buscar Sessão: 
+```
+GET /api/v1/sessaovotacao/{id}
+```
+- Corpo de requisição (JSON):
+```
+{
+    "nome": "Nome da sessão",
+    "descricao": "Descrição da sessão",
+    "tempoVoto": "00:00"
+}
+```
+
+## Voto
+Cadastrar Voto: 
+```
+POST /api/v1/votos
+```
+- Corpo de requisição (JSON):
+```
+{
+    "idSessao": ID Sessão,
+    "idFunc": ID Funcionário,
+    "escolha": "APROVADO e REPROVADO"
+}
+```
+
+## Resultados
+Buscar Resultado: 
+```
+GET api/v1/resultados/{idSessao}
+```
 
 ### 5. Versionamento da API
 Para versionar a API, adotamos a estratégia de versionamento na URL. Exemplo:
@@ -131,3 +212,10 @@ GET /actuator/metrics
 
 ### 7. Considerações Finais
 Este projeto demonstra uma arquitetura de microsserviços robusta, utilizando tecnologias modernas e práticas recomendadas para garantir escalabilidade, manutenibilidade e facilidade de desenvolvimento. Sinta-se à vontade para explorar e contribuir para este projeto!
+
+## Para contribuir com micro_servico, siga estas etapas:
+1. Bifurque este repositório.
+2. Crie um branch: `git checkout -b <nome_branch>`.
+3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
+4. Envie para o branch original: `git push origin ms-gerenciar-processos/ <local>`
+5. Crie a solicitação de pull.
