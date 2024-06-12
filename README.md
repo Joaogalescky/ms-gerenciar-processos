@@ -1,4 +1,5 @@
 
+
 # Desafio 03  - Microsserviço para gestão de tomada de decições de uma empresa
 
 ## Introdução
@@ -216,32 +217,38 @@ GET api/v1/resultados/{idSessao}
 ## Monitoramento - Métricas do Actuator
 Para acessar as métricas do actuator, há duas formas:
 
+**Portas dos Microsserviços:**
+```
+ 8081 - Proposta
+ 8082 - Funcionários
+ 8083 - Resultado
+ ```
 **Postman:**
-
+ 
  Actuator EndPoints
 ```
-GET {porta da API}/actuator
+GET {porta do microsserviço}/actuator
 ```
  Health 
 ```
-GET {porta da API}/actuator/health
+GET {porta do microsserviço}/actuator/health
 ```
  Info 
 ```
-GET {porta da API}/actuator/info
+GET {porta do microsserviço}/actuator/info
 ```
  Metrics 
 ```
-GET {porta da API}/actuator/metrics
+GET {porta do microsserviço}/actuator/metrics
 ```
 **SpringBootAdmin:**
 ```
-http/localhost:{porta da API}/applications
+http/localhost:{porta do microsserviço}/applications
 ```
 Para acessar as API's, há duas possibilidades, sendo:
 - Wallboard - acessível pelo menu onboard
 - Applications - acessível pela página home
-##
+## 
 
 ### 5. Versionamento da API
 Para versionar a API, adotamos a estratégia de versionamento na URL. Exemplo:
@@ -252,7 +259,7 @@ Para versionar a API, adotamos a estratégia de versionamento na URL. Exemplo:
 /v2/funcionarios
 ```
 Essa abordagem é simples e eficaz, permitindo que diferentes versões da API coexistam, facilitando a evolução e manutenção do sistema sem quebrar a compatibilidade com clientes antigos.
-Para executar os testes @GET,  @PUT,  @POST e @DELETE, é necessário a colocação da versão na URL para a execução das requisições.
+Para executar os testes `@GET`,  `@PUT`,  `@POST` e `@DELETE`, é necessário a colocação da versão na URL para a execução das requisições.
 
 ### 6. Considerações Finais
 Este projeto demonstra uma arquitetura de microsserviços robusta, utilizando tecnologias modernas e práticas recomendadas para garantir escalabilidade, manutenibilidade e facilidade de desenvolvimento. Sinta-se à vontade para explorar e contribuir para este projeto!
