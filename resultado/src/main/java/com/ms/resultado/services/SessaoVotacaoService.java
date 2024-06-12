@@ -10,13 +10,13 @@ import com.ms.resultado.web.dtos.PropostaDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Date;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class SessaoVotacaoService {
-
     private final PropostaClient propostaClient;
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
     private final AgendadorVotacao agendadorVotacao;

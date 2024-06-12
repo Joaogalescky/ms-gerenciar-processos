@@ -16,22 +16,32 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Votação", description ="Contém operação relativas para registrar voto")
+@Tag(name = "Votação", description = "Contém operação relativas para registrar voto")
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/votos")
-@RequiredArgsConstructor
 public class VotoController {
 
     private final VotoService votoService;
 
-    @Operation(summary = "Registrar voto", description = "Registrar voto",
+    @Operation(summary = "Registrar voto", description = "Recurso para registrar voto",
             responses = {
-                    @ApiResponse(responseCode = "201", description = "Voto registrado com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = Resultado.class))),
-                    @ApiResponse(responseCode = "409", description = "Voto já registrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
-                    @ApiResponse(responseCode = "422", description = "Voto não registrado por dados de entrada inválidos",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "Recurso registrado com sucesso!",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = Resultado.class))),
+                    @ApiResponse(
+                            responseCode = "409",
+                            description = "Recurso já registrado",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(
+                            responseCode = "422",
+                            description = "Recurso não registrado por dados de entrada inválidos",
+                            content = @Content(
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
+                    )
             }
     )
     @PostMapping

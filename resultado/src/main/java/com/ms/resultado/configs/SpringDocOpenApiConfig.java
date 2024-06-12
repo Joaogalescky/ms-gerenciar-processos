@@ -1,4 +1,4 @@
-package com.ms.funcionario.configs;
+package com.ms.resultado.configs;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;

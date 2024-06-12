@@ -5,10 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class VotoCadastroDto {
-
     private Long id;
     @NonNull
     private Long idSessao;
