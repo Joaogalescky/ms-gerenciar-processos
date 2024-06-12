@@ -8,5 +8,4 @@ public class PropostaConsultaDto {
     private Long idFuncionario;
     private String nome;
     private String descricao;
-    private String tempoVoto;
 }
