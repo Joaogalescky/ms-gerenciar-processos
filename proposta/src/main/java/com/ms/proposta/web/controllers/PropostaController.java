@@ -103,17 +103,4 @@ public class PropostaController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Recuperar um funcionario pelo id", description = "Recuperar um funcionario pelo id",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Funcionario recuperado com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
-                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
-            }
-    )
-    @GetMapping("/funcionarios/{id}")
-    public ResponseEntity<FuncionarioDto> buscarFuncionario(@PathVariable Long id) {
-        FuncionarioDto funcionario = funcionarioClient.buscarPorId(id);
-        return ResponseEntity.ok(funcionario);
-    }
 }
