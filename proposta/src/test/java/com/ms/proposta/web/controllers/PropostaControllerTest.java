@@ -1,6 +1,7 @@
 package com.ms.proposta.web.controllers;
 
 import com.ms.proposta.entities.Proposta;
+import com.ms.proposta.repositories.FuncionarioClient;
 import com.ms.proposta.services.PropostaService;
 import com.ms.proposta.web.dtos.FuncionarioDto;
 import com.ms.proposta.web.dtos.PropostaAtualizacaoDto;
@@ -29,6 +30,9 @@ class PropostaControllerTest {
 
     @MockBean
     private PropostaService propostaService;
+
+    @MockBean
+    private FuncionarioClient funcionarioClient;
 
     @Test
     void cadastrarProposta() {
@@ -108,6 +112,19 @@ class PropostaControllerTest {
 
         ResponseEntity<PropostaAtualizacaoDto> response = restTemplate.exchange("/api/v1/propostas/{id}",
                 HttpMethod.PUT, new HttpEntity<>(propostaAtualizacaoDto), PropostaAtualizacaoDto.class, id);
+    }
+
+    @Test
+    void deletarProposta(){
+        Long id = 1L;
+        Mockito.doNothing().when(propostaService).deletarProposta(id);
+
+        ResponseEntity<Void> response = restTemplate
+                .exchange("/api/v1/propostas/{id}",
+                        HttpMethod.DELETE, null, Void.class, id);
+
+        Assertions.assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        Mockito.verify(propostaService, Mockito.times(1)).deletarProposta(id);
     }
 
 }
