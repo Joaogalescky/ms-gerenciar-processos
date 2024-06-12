@@ -19,6 +19,7 @@ public class ResultadoService {
     @Autowired
     private SessaoVotacaoService sessaoVotacaoService;
 
+
     @Transactional
     public ResultadoDto verResultado(Long idSessao) {
 

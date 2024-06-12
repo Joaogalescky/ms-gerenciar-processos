@@ -8,6 +8,7 @@ import com.ms.resultado.repositories.SessaoVotacaoRepository;
 import com.ms.resultado.web.dtos.IniciarVotacaoDto;
 import com.ms.resultado.web.dtos.PropostaDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,12 @@ import java.util.Date;
 @Transactional
 @RequiredArgsConstructor
 public class SessaoVotacaoService {
+
+    @Autowired
     private final PropostaClient propostaClient;
+    @Autowired
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
+    @Autowired
     private final AgendadorVotacao agendadorVotacao;
 
     public SessaoVotacao iniciarVotacao(IniciarVotacaoDto iniciarVotacaoDto) {

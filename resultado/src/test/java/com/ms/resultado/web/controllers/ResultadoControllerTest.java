@@ -28,7 +28,7 @@ class ResultadoControllerIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        // Limpar quaisquer interações anteriores do mock
+
         Mockito.reset(resultadoService);
     }
 
