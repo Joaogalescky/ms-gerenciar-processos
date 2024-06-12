@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.api.ErrorMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/sessaovotacao")
 public class SessaoVotacaoController {
 
+    @Autowired
     private final SessaoVotacaoService sessaoVotacaoService;
 
     public SessaoVotacaoController(SessaoVotacaoService sessaoVotacaoService) {
@@ -36,8 +38,7 @@ public class SessaoVotacaoController {
                             responseCode = "404",
                             description = "Recurso não encontrado",
                             content = @Content(
-                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))
-                    )
+                                    mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
                     @ApiResponse(
                             responseCode = "409",
                             description = "Recurso já iniciado",

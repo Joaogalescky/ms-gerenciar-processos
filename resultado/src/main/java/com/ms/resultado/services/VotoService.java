@@ -11,14 +11,18 @@ import com.ms.resultado.web.dtos.mappers.VotoMapper;
 import com.ms.resultado.exceptions.EntidadeNaoEncontradaException;
 import com.ms.resultado.exceptions.VotoDuplicadoException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class VotoService {
+    @Autowired
     private final VotoRepository votoRepository;
+    @Autowired
     private final FuncionarioClient funcionarioClient;
+    @Autowired
     private final SessaoVotacaoRepository sessaoVotacaoRepository;
 
     @Transactional
