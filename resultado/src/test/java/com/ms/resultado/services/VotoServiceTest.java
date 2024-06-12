@@ -47,7 +47,7 @@ class VotoServiceTest {
 
     @Test
     @DisplayName("Deve lançar exceção ao cadastrar voto em sessão inativa")
-    void cadastrarVotoInactiveSession() {
+    void cadastrarVotoCase1() {
         FuncionarioDto funcionarioDto = new FuncionarioDto();
         VotoCadastroDto votoCadastroDto = new VotoCadastroDto(1L, 1L, 1L, Escolha.REPROVADO);
         SessaoVotacao sessaoVotacao = new SessaoVotacao();
@@ -64,7 +64,7 @@ class VotoServiceTest {
 
     @Test
     @DisplayName("Deve lançar exceção ao cadastrar voto duplicado")
-    void cadastrarVotoDuplicate() {
+    void cadastrarVotoCase2() {
         VotoCadastroDto votoCadastroDto = new VotoCadastroDto(1L, 1L, 1L, Escolha.REPROVADO);
         SessaoVotacao sessaoVotacao = new SessaoVotacao();
         sessaoVotacao.setStatus(StatusSessao.ATIVO);

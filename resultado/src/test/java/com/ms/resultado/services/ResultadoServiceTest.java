@@ -51,7 +51,7 @@ class ResultadoServiceTest {
 
     @Test
     @DisplayName("Deve retornar resultado vazio quando não há votos")
-    void verResultadoCase1() {
+    void verResultadoCase2() {
         Long idSessao = 1L;
         when(votoRepository.findByIdSessao(idSessao)).thenReturn(Arrays.asList());
 
