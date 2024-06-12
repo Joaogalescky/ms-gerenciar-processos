@@ -41,7 +41,7 @@ Este projeto é um sistema de backend desenvolvido em Java e Spring Boot para ge
 
 ### Pré-requisitos
 - JDK 17
-- Maven 4.0.0
+- Maven 3.9.7
 - Docker (opcional, para execução com Docker)
 
 ### 1. Clonando o Repositório
