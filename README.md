@@ -125,6 +125,7 @@ POST /api/v1/propostas
 - Corpo de requisição (JSON):
 ```bash
 {
+    "idFuncionario": ID do funcionário,
     "nome": "Nome da proposta",
     "descricao": "Descrição da proposta"
 }
