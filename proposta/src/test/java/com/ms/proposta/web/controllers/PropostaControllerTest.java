@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -71,5 +73,20 @@ class PropostaControllerTest {
         Mockito.verify(propostaService, Mockito.times(1)).listarPropostas();
     }
 
+    @Test
+    void buscarPorId(){
+        Long id = 1L;
+        Proposta proposta = new Proposta();
+        proposta.setIdFuncionario(1L);
+        proposta.setNome("Arrumar mesa");
+        proposta.setDescricao("arrumar mesa sala 2");
+        proposta.setDataProposta(new Date());
+
+        Mockito.when(propostaService.buscarPorId(id)).thenReturn(proposta);
+
+        ResponseEntity<PropostaConsultaDto> response = restTemplate.getForEntity("/api/v1/propostas/{id}", PropostaConsultaDto.class, id);
+        Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
+        Mockito.verify(propostaService, Mockito.times(1)).buscarPorId(id);
+    }
 
 }
