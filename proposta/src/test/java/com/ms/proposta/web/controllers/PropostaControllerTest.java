@@ -89,4 +89,25 @@ class PropostaControllerTest {
         Mockito.verify(propostaService, Mockito.times(1)).buscarPorId(id);
     }
 
+
+    @Test
+    void alterarProposta(){
+        Long id = 1L;
+        PropostaAtualizacaoDto propostaAtualizacaoDto = new PropostaAtualizacaoDto();
+        propostaAtualizacaoDto.setNome("Arrumar mesa");
+        propostaAtualizacaoDto.setDescricao("arrumar mesa sala 2");
+
+        Proposta proposta = new Proposta();
+        proposta.setId(id);
+        proposta.setIdFuncionario(1L);
+        proposta.setNome("Arrumar mesa");
+        proposta.setDescricao("arrumar mesa sala 2");
+        proposta.setDataProposta(new Date());
+
+        Mockito.when(propostaService.alterarProposta(id, propostaAtualizacaoDto)).thenReturn(proposta);
+
+        ResponseEntity<PropostaAtualizacaoDto> response = restTemplate.exchange("/api/v1/propostas/{id}",
+                HttpMethod.PUT, new HttpEntity<>(propostaAtualizacaoDto), PropostaAtualizacaoDto.class, id);
+    }
+
 }
