@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,9 +42,9 @@ public class PropostaController {
             }
     )
     @PostMapping
-    public ResponseEntity<Proposta> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
+    public ResponseEntity<PropostaCadastroDto> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
         Proposta proposta = propostaService.cadastrarProposta(propostaDto);
-        return ResponseEntity.ok(proposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(propostaDto);
     }
 
     @Operation(summary = "Listar Propostas", description = "Listar Propostas",
@@ -102,17 +103,4 @@ public class PropostaController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Recuperar um funcionario pelo id", description = "Recuperar um funcionario pelo id",
-            responses = {
-                    @ApiResponse(responseCode = "200", description = "Funcionario recuperado com sucessso",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = PropostaCadastroDto.class))),
-                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
-            }
-    )
-    @GetMapping("/funcionarios/{id}")
-    public ResponseEntity<FuncionarioDto> buscarFuncionario(@PathVariable Long id) {
-        FuncionarioDto funcionario = funcionarioClient.buscarPorId(id);
-        return ResponseEntity.ok(funcionario);
-    }
 }

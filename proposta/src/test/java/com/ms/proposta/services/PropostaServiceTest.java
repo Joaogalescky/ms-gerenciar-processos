@@ -2,13 +2,13 @@ package com.ms.proposta.services;
 
 
 import com.ms.proposta.entities.Proposta;
+import com.ms.proposta.exceptions.FuncionarioNaoEncontradoException;
 import com.ms.proposta.exceptions.IdPropostaNaoEncontradoException;
 import com.ms.proposta.repositories.FuncionarioClient;
 import com.ms.proposta.repositories.PropostaRepository;
 import com.ms.proposta.web.dtos.FuncionarioDto;
 import com.ms.proposta.web.dtos.PropostaAtualizacaoDto;
 import com.ms.proposta.web.dtos.PropostaCadastroDto;
-import com.ms.proposta.web.exceptions.FuncionarioNaoEncontradoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
