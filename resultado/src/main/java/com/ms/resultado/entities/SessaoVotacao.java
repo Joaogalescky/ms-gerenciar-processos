@@ -3,6 +3,7 @@ package com.ms.resultado.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ms.resultado.enums.StatusSessao;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "sessaoVotacao")
 public class SessaoVotacao implements Serializable {

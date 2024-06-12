@@ -50,7 +50,7 @@ class FuncionarioControllerIntegrationTest {
     }
 
     @Test
-    void getById() {
+    void buscarPorId() {
         Long id = 1L;
         Funcionario funcionarioMock = new Funcionario(id, "João", "1980-01-01", "12345678901", "M");
         Mockito.when(funcionarioService.buscarPorId(id)).thenReturn(funcionarioMock);

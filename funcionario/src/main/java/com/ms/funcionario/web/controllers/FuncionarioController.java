@@ -84,7 +84,7 @@ public class FuncionarioController {
             }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<FuncionarioListarDto> getById(@PathVariable Long id) {
+    public ResponseEntity<FuncionarioListarDto> buscarPorId(@PathVariable Long id) {
         Funcionario funcionario = funcionarioService.buscarPorId(id);
         if (funcionario == null) {
             throw new FuncionarioNaoEncontradoException(id);
