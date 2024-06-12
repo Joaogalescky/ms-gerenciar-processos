@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,9 +42,9 @@ public class PropostaController {
             }
     )
     @PostMapping
-    public ResponseEntity<Proposta> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
+    public ResponseEntity<PropostaCadastroDto> cadastrarProposta(@RequestBody PropostaCadastroDto propostaDto) {
         Proposta proposta = propostaService.cadastrarProposta(propostaDto);
-        return ResponseEntity.ok(proposta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(propostaDto);
     }
 
     @Operation(summary = "Listar Propostas", description = "Listar Propostas",
