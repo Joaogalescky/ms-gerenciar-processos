@@ -29,4 +29,10 @@ public class Voto implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "escolha")
     private Escolha escolha;
+
+    public Voto(Long idSessao, Long idFunc, Escolha escolha) {
+        this.idSessao = idSessao;
+        this.idFunc = idFunc;
+        this.escolha = escolha;
+    }
 }

@@ -18,4 +18,10 @@ public class VotoCadastroDto {
     private Long idFunc;
     @NonNull
     private Escolha escolha;
+
+    public VotoCadastroDto(@NonNull Long idSessao, @NonNull Long idFunc, @NonNull Escolha escolha) {
+        this.idSessao = idSessao;
+        this.idFunc = idFunc;
+        this.escolha = escolha;
+    }
 }

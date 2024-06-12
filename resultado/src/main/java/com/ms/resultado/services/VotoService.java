@@ -53,7 +53,6 @@ public class VotoService {
         }
     }
 
-
     public boolean verificarVotoExistente(Long sessaoId, Long funcionarioId) {
         return votoRepository.existsByIdSessaoAndIdFunc(sessaoId, funcionarioId);
     }
