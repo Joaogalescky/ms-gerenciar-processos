@@ -24,6 +24,7 @@ public class PropostaService {
     private final PropostaRepository propostaRepository;
     @Autowired
     private final FuncionarioClient funcionarioClient;
+
     public Proposta cadastrarProposta(PropostaCadastroDto propostaDto) {
 
         FuncionarioDto funcionario = funcionarioClient.buscarPorId(propostaDto.getIdFuncionario());
@@ -54,7 +55,7 @@ public class PropostaService {
 
     public Proposta alterarProposta(Long idProposta, PropostaAtualizacaoDto propostaDto) {
 
-        if (propostaDto.getNome().isEmpty() || propostaDto.getDescricao().isEmpty()){
+        if (propostaDto.getNome().isEmpty() || propostaDto.getDescricao().isEmpty()) {
             throw new DadosFuncionarioInvalidosException("Dados obrigatórios da proposta estão incompletos ou inválidos");
         }
 
